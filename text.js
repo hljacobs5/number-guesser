@@ -4,11 +4,12 @@ function getRandom(min, max) {
 }
 
 
-var guessBtn = document.getElementById('guess')
+var guessBtn = document.getElementById('guess');
 var hint = document.getElementById('hint-space');
+var lastGuess = document.querySelector('.last-guess');
 
-guessBtn.addEventListener('click', function(){
-	var randomNumber = getRandom()
+guessBtn.addEventListener('click', function () {
+	var randomNumber = getRandom();
 	var userInput = parseInt(document.getElementById("user-input").value);
 
 	if(userInput === randomNumber){
@@ -19,8 +20,25 @@ guessBtn.addEventListener('click', function(){
 		hint.innerText = "Too low.";
 	}
 
-	console.log('hit', randomNumber, userInput)
-});
+lastGuess.innerText(userInput);
+//console.log('hit', randomNumber, userInput)
+		
+		}
+
+
+	
+
+
+	
+
 
 //get userInput to show up in the spot 25 is in now.
 //clear the userInput on click of the clear button. 
+
+
+// git add .
+// git commit -m "hi"
+// git push origin master
+		
+//var userGuess = document.getElementById("last-guess");
+//userGuess.innerText = (userInput);
