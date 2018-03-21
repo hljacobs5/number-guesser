@@ -1,32 +1,65 @@
+window.onload = getRandom();
+var randomNumber;
 
 function getRandom(min, max) {
-	return Math.floor(Math.random() * (100-1) +1);
+	randomNumber = Math.floor(Math.random() * (100-1) +1);
+	console.log("getRandom", randomNumber);
+	return randomNumber;
 }
 
-
+var userInputField = document.getElementById('user-input');
 var guessBtn = document.getElementById('guess');
 var hint = document.getElementById('hint-space');
 var lastGuess = document.querySelector('.last-guess');
-
+var clearBtn = document.getElementById('clear');
+var resetBtn = document.getElementById('reset');
 guessBtn.addEventListener('click', function () {
-	var randomNumber = getRandom();
-	var userInput = parseInt(document.getElementById("user-input").value);
-
+	console.log('click', randomNumber);
+	var userInput = parseInt(userInputField.value);
 	if(userInput === randomNumber){
 		hint.innerText = 'Boom!'
+	} else if (userInput > 100) {
+		hint.innerText = "Out of range, try again."
 	} else if (userInput > randomNumber) {
 		hint.innerText = "Too high.";
 	} else if (userInput < randomNumber) {
 		hint.innerText = "Too low.";
-	}
+	}	
 
-lastGuess.innerText(userInput);
-//console.log('hit', randomNumber, userInput)
+	lastGuess.innerText = userInput;
+});
+
+clearBtn.addEventListener('click', function () {
+	console.log('cleared');
+	var clearInput = document.getElementById('user-input');
+	clearInput.value = "";
+	clearBtn.disabled = true;
+});
+
+resetBtn.addEventListener('click', function() {
+	getRandom();
+	lastGuess.innerText = "";
+	hint.innerText = "";
+	var clearInput = document.getElementById('user-input');
+	clearInput.value = "";
+	resetBtn.disabled = true;
+
+});		
 		
-		}
+userInputField.addEventListener('keydown', function() {
+	console.log('typing');
+	clearBtn.disabled = false;
+});
 
+userInputField.addEventListener('keydown', function() {
+	console.log('typing');
+	resetBtn.disabled = false;
+});
 
 	
+/// resetBtn.addEventListener('click', function() {
+// 	document.querySelector('#user-input').reset();
+// });
 
 
 	
