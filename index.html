@@ -9,6 +9,7 @@
 </header>
 <body>
 	<input type="text" placeholder="Enter your guess" name="userinput" id="user-input" />
+	<h6 id="error-message"></h6>
 	<br><br><br>
 	<span><button id="guess" type="submit" name="one">Guess</button></span>
 	<span><button id="clear" type="submit" name="two" disabled>Clear</button></span>
@@ -17,7 +18,8 @@
 	<div class="last-guess"></div>
 	<h3 id='hint-space'></h3>
 	<br><br><br><br>
-	<button id = "reset" type = "reset" name = "reset" disabled>Reset</button>
+	<button id = "reset" type = "reset" name = "reset" disabled>Reset</button><br><br><br>
+	<input id="min" placeholder="Minimum" /><input id="max" placeholder="Maximum" /><button id="set-range">Set Range</button>
 	<script src="text.js"></script>
 </body>
 </html>

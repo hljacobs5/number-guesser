@@ -13,27 +13,41 @@ var hint = document.getElementById('hint-space');
 var lastGuess = document.querySelector('.last-guess');
 var clearBtn = document.getElementById('clear');
 var resetBtn = document.getElementById('reset');
-guessBtn.addEventListener('click', function () {
-	console.log('click', randomNumber);
-	var userInput = parseInt(userInputField.value);
+var errorMessage = document.getElementById('error-message');
+	
+	function checkInputValidation(userInput, randomNumber) {
+		if (isNaN(userInput)) {
+			errorMessage.innerText = "Error"
+		} else if (userInput < 1||userInput > 100) {
+			errorMessage.innerText = "Input out of range"
+		} else {
+			checkNumber(userInput, randomNumber)
+		}}
+			
+	function checkNumber(userInput, randomNumber) {
+
 	if(userInput === randomNumber){
 		hint.innerText = 'Boom!'
-	} else if (userInput > 100) {
-		hint.innerText = "Out of range, try again."
 	} else if (userInput > randomNumber) {
 		hint.innerText = "Too high.";
 	} else if (userInput < randomNumber) {
 		hint.innerText = "Too low.";
-	}	
+		}	
+	
 
 	lastGuess.innerText = userInput;
+};
+
+guessBtn.addEventListener('click', function () {
+	console.log('click', randomNumber);
+	var userInput = parseInt(userInputField.value)
+	checkInputValidation(userInput, randomNumber);
 });
 
 clearBtn.addEventListener('click', function () {
 	console.log('cleared');
 	var clearInput = document.getElementById('user-input');
 	clearInput.value = "";
-	clearBtn.disabled = true;
 });
 
 resetBtn.addEventListener('click', function() {
@@ -46,12 +60,16 @@ resetBtn.addEventListener('click', function() {
 
 });		
 		
-userInputField.addEventListener('keydown', function() {
-	console.log('typing');
-	clearBtn.disabled = false;
+userInputField.addEventListener('keyup', function() {
+	if (userInputField.value !== '') {
+		clearBtn.disabled = false; 
+	} else {
+		clearBtn.disabled = true;
+	}
+
 });
 
-userInputField.addEventListener('keydown', function() {
+userInputField.addEventListener('keyup', function() {
 	console.log('typing');
 	resetBtn.disabled = false;
 });
