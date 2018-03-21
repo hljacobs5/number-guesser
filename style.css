@@ -15,12 +15,15 @@ body {
 }
 
 
-
 .second {
 	color: #E6E7E8;
 }
 
 
+.error-message {
+	color: red;
+	font-size: 300px;
+}
 
 input {
 	width: 500px;

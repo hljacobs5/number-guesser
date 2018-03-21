@@ -48,6 +48,7 @@ clearBtn.addEventListener('click', function () {
 	console.log('cleared');
 	var clearInput = document.getElementById('user-input');
 	clearInput.value = "";
+	clearBtn.disabled = true;
 });
 
 resetBtn.addEventListener('click', function() {
@@ -57,7 +58,7 @@ resetBtn.addEventListener('click', function() {
 	var clearInput = document.getElementById('user-input');
 	clearInput.value = "";
 	resetBtn.disabled = true;
-
+	clearBtn.disabled = true;
 });		
 		
 userInputField.addEventListener('keyup', function() {
@@ -69,10 +70,14 @@ userInputField.addEventListener('keyup', function() {
 
 });
 
+
 userInputField.addEventListener('keyup', function() {
 	console.log('typing');
-	resetBtn.disabled = false;
-});
+	if (userInputField.value !=='') {
+		resetBtn.disabled = false;
+	} else {
+	resetBtn.disabled = true;
+}});
 
 	
 /// resetBtn.addEventListener('click', function() {
